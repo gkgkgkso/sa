@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import ProductGrid from '@/components/product/ProductGrid'
@@ -16,7 +16,7 @@ interface Product {
   isActive: boolean
 }
 
-export default function ProductsPage() {
+function ProductList() {
   const searchParams = useSearchParams()
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
@@ -68,13 +68,12 @@ export default function ProductsPage() {
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="animate-pulse">          {/* 카테고리 메뉴 스켈레톤 */}
+        <div className="animate-pulse">
           <div className="flex gap-4 mb-8 overflow-x-auto pb-4">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={`category-skeleton-${i}`} className="h-10 w-24 bg-gray-200 rounded-full flex-shrink-0"></div>
             ))}
           </div>
-          {/* 상품 그리드 스켈레톤 */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div key={`product-skeleton-${i}`} className="bg-gray-200 h-64 rounded-lg"></div>
@@ -97,9 +96,9 @@ export default function ProductsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* 카테고리 메뉴 */}
       <div className="mb-8">
-        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">          <Link
+        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+          <Link
             href="/products"
             className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium
               ${!currentCategory
@@ -125,7 +124,6 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      {/* 상품 그리드 */}
       {products.length > 0 ? (
         <ProductGrid products={products} />
       ) : (
@@ -134,5 +132,28 @@ export default function ProductsPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="animate-pulse">
+          <div className="flex gap-4 mb-8 overflow-x-auto pb-4">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={`category-skeleton-${i}`} className="h-10 w-24 bg-gray-200 rounded-full flex-shrink-0"></div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <div key={`product-skeleton-${i}`} className="bg-gray-200 h-64 rounded-lg"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    }>
+      <ProductList />
+    </Suspense>
   )
 }

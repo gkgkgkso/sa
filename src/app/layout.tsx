@@ -22,6 +22,39 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "HAZEL's",
   description: "최고의 제품을 최상의 서비스로 제공합니다.",
+  manifest: '/manifest.json',
+  icons: {
+    apple: [
+      { url: '/icons/apple-icon-180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
+  themeColor: '#2563eb',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    naver: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({

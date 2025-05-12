@@ -18,7 +18,9 @@ export async function POST(req: NextRequest) {
     const blob = await put(join('products', filename), file, {
       access: 'public',
       addRandomSuffix: false
-    })    return NextResponse.json({
+    })
+    
+    return NextResponse.json({
       url: blob.url,
       pathname: blob.pathname,
       filename: filename
