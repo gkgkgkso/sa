@@ -1,4 +1,4 @@
-import HeroBanner from "@/components/ui/HeroBanner";
+// import HeroBanner from "@/components/ui/HeroBanner";
 import ProductSection from "@/components/product/ProductSection";
 import Link from "next/link";
 
@@ -69,7 +69,7 @@ const newProducts = [
 export default function Home() {
   return (
     <div className="space-y-12">
-      <HeroBanner />
+      {/* <HeroBanner /> */}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 베스트 제품 섹션 */}

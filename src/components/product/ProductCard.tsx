@@ -23,7 +23,7 @@ export default function ProductCard({ id, name, description, price, image }: Pro
       href={`/products/${id}`}
       className="group block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow bg-white"
     >
-      <div className="relative aspect-w-1 aspect-h-1 bg-gray-100">
+      <div className="relative aspect-square bg-gray-100">
         <div className="w-full h-full">
           {imageLoading && (
             <div className="absolute inset-0 bg-gray-200 animate-pulse" />
