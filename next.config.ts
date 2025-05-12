@@ -1,15 +1,12 @@
 import type { NextConfig } from "next";
 import withPWA from 'next-pwa';
 
-const nextConfig: NextConfig = withPWA({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-})({
+const nextConfig: NextConfig = {
   images: {
     domains: [
       'your-s3-bucket.s3.ap-northeast-2.amazonaws.com',
-      'localhost'
+      'localhost',
+      'vercel.blob.core.windows.net'
     ],
     formats: ['image/avif', 'image/webp'],
   },

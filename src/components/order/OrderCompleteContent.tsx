@@ -1,15 +1,28 @@
 'use client'
 
-import { Suspense } from 'react'
-import OrderCompleteContent from '@/components/order/OrderCompleteContent'
-import OrderCompleteSkeleton from '@/components/order/OrderCompleteSkeleton'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 
-export default function OrderCompletePage() {
-  return (
-    <Suspense fallback={<OrderCompleteSkeleton />}>
-      <OrderCompleteContent />
-    </Suspense>
-  )
+interface OrderDetails {
+  id: string
+  totalAmount: number
+  items: Array<{
+    name: string
+    quantity: number
+    price: number
+  }>
+  bankInfo: {
+    bankName: string
+    accountNumber: string
+    accountHolder: string
+  }
+}
+
+export default function OrderCompleteContent() {
+  const searchParams = useSearchParams()
+  const [order, setOrder] = useState<OrderDetails | null>(null)
+  const orderId = searchParams.get('orderId')
 
   useEffect(() => {
     const fetchOrderDetails = async () => {

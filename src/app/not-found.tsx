@@ -8,7 +8,6 @@ export default function NotFound() {
     // 404 페이지 방문 분석
     // Google Analytics나 다른 분석 도구에 전송
   }, [])
-
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="text-center">
@@ -36,3 +35,4 @@ export default function NotFound() {
       </div>
     </div>
   )
+}
