@@ -13,6 +13,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ id, name, description, price, image }: ProductCardProps) {
+  console.log('ProductCard image:', image);
   const [imageError, setImageError] = useState(false)
   const [imageLoading, setImageLoading] = useState(true)
   const defaultImage = '/images/default-product.jpg'
