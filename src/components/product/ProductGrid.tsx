@@ -8,6 +8,7 @@ interface Product {
   image: string
   category: string
   isActive: boolean
+  imageUrl?: string
 }
 
 interface ProductGridProps {
@@ -24,7 +25,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           name={product.name}
           description={product.description}
           price={product.price}
-          image={product.image}
+          image={(product.image || product.imageUrl) ?? ''}
         />
       ))}
     </div>
