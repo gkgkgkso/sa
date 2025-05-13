@@ -125,6 +125,8 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <div className="bg-red-500 text-white p-8">Tailwind Test</div>
     </div>
   )
 }
